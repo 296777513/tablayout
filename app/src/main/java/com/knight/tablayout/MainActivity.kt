@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -30,8 +31,11 @@ class MainActivity : AppCompatActivity() {
 
             override fun instantiateItem(container: ViewGroup, position: Int): Any {
                 val textView = TextView(this@MainActivity)
-                textView.text = position.toString() + ""
+                textView.text = strs[position]
                 textView.textSize = 50f
+                textView.layoutParams =
+                        ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                textView.gravity = Gravity.CENTER
                 container.addView(textView)
                 return textView
             }
@@ -47,11 +51,11 @@ class MainActivity : AppCompatActivity() {
         val wm1 = this.windowManager
         val screenWidth = wm1.defaultDisplay.width
         val width = (screenWidth / 4.5f).toInt()
-        tablayout.setTabItemWidth(width)
+//        tablayout.setTabItemWidth(width)
         tablayout.setupWithViewPager(viewpager)
         tablayout.isIndicatorAnimation = true
-//        tablayout.setTabIndicatorFullWidth(false)
-//        tablayout.selectedTabIndicatorWidth = 10
+        tablayout.setTabIndicatorFullWidth(false)
+        tablayout.mIsHalfVisible = true
 
     }
 

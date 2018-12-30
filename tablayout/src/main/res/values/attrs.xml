@@ -4,6 +4,6 @@
         <attr name="tabIndicatorAnimation" format="boolean"/>
         <attr name="tabIndicatorFullWidth" format="boolean"/>
         <attr name="tabIndicatorWidthPercent" format="float"/>
-
+        <attr name="tabViewHalfVisible" format="boolean"/>
     </declare-styleable>
 </resources>

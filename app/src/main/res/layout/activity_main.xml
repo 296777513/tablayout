@@ -14,6 +14,7 @@
             app:tabIndicatorAnimation="true"
             app:tabIndicatorFullWidth="false"
             app:tabIndicatorWidthPercent="0.2"
+            app:tabViewHalfVisible="true"
             app:tabMode="scrollable"/>
 
     <android.support.v4.view.ViewPager

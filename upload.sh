@@ -11,9 +11,12 @@ echo ${str}
 
 sed -i "" "s/${origin}/${str}/g" gradle.properties
 #./gradlew clean build bintrayUpload -PbintrayUser=296777513 -PbintrayKey=0e35550c9145602f043f4cb98f2a12b9a6bbb98f -PdryRun=false
-sed -i "" "s/"SOURCE_DEPENDECY=true"/"SOURCE_DEPENDECY=false"/g" basetools/local.properties
+#sed -i "" "s/"SOURCE_DEPENDECY=true"/"SOURCE_DEPENDECY=false"/g" basetools/local.properties
 echo "begin upload please wait!!!~~~"
-uploadStr=`./gradlew clean build bintrayUpload -PbintrayUser=296777513 -PbintrayKey=0e35550c9145602f043f4cb98f2a12b9a6bbb98f -PdryRun=false 2>&1`
+
+bintaryUser=`grep "PbintrayUser" local.properties | cut -d '=' -f 2`
+bintaryKey=`grep "PbintrayKey" local.properties | cut -d '=' -f 2`
+uploadStr=`./gradlew clean :tablayout:build :tablayout:bintrayUpload -PbintrayUser=${bintaryUser} -PbintrayKey=${bintaryKey} -PdryRun=false 2>&1`
 
 echo ${uploadStr}
 
@@ -26,8 +29,8 @@ then
 else
     echo "Failed~~~~ please wait~~"
     sed -i "" "s/${str}/${origin}/g" gradle.properties
-    ./gradlew clean build bintrayUpload -PbintrayUser=296777513 -PbintrayKey=0e35550c9145602f043f4cb98f2a12b9a6bbb98f -PdryRun=false
+    ./gradlew clean :tablayout:build :tablayout:bintrayUpload -PbintrayUser=${bintaryUser} -PbintrayKey=${bintaryKey} -PdryRun=false
  fi
 
- sed -i "" "s/"SOURCE_DEPENDECY=false"/"SOURCE_DEPENDECY=true"/g" basetools/local.properties
+# sed -i "" "s/"SOURCE_DEPENDECY=false"/"SOURCE_DEPENDECY=true"/g" basetools/local.properties
 

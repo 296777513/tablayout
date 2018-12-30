@@ -276,6 +276,7 @@ public class TabLayout extends HorizontalScrollView {
     boolean mIndicatorAnimation;
     boolean mIndicatorFullWidth;
     float mIndicatorWidthPercent;
+    boolean mIsHalfVisible;
 
     private OnTabSelectedListener mSelectedListener;
     private final ArrayList<OnTabSelectedListener> mSelectedListeners = new ArrayList<>();
@@ -320,6 +321,7 @@ public class TabLayout extends HorizontalScrollView {
         mIndicatorFullWidth = aExtend.getBoolean(com.knight.tablayout.R.styleable.TabLayout_Extend_tabIndicatorFullWidth, true);
         mIndicatorWidthPercent = aExtend.getFloat(com.knight.tablayout.R.styleable.TabLayout_Extend_tabIndicatorWidthPercent, 0f);
         mIndicatorWidthPercent = mIndicatorWidthPercent > 1f ? 1f : mIndicatorWidthPercent < 0 ? 0f : mIndicatorWidthPercent;
+        mIsHalfVisible = aExtend.getBoolean(com.knight.tablayout.R.styleable.TabLayout_Extend_tabViewHalfVisible, false);
         aExtend.recycle();
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TabLayout,
@@ -382,6 +384,11 @@ public class TabLayout extends HorizontalScrollView {
         final Resources res = getResources();
         mTabTextMultiLineSize = res.getDimensionPixelSize(R.dimen.design_tab_text_size_2line);
         mScrollableTabMinWidth = res.getDimensionPixelSize(R.dimen.design_tab_scrollable_min_width);
+
+        if (mMode == MODE_SCROLLABLE && mIsHalfVisible) {
+            int widthPixels = getContext().getResources().getDisplayMetrics().widthPixels;
+            mTabItemWidth = (int) (widthPixels / 4.5f);
+        }
 
         // Now apply the tab mode and gravity
         applyModeAndGravity();
@@ -1001,9 +1008,9 @@ public class TabLayout extends HorizontalScrollView {
 
     private int mTabItemWidth = 0;
 
-    public void setTabItemWidth(int width) {
-        mTabItemWidth = width;
-    }
+//    public void setTabItemWidth(int width) {
+//        mTabItemWidth = width;
+//    }
 
     private LinearLayout.LayoutParams createLayoutParamsForTabs() {
         final LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -2359,6 +2366,18 @@ public class TabLayout extends HorizontalScrollView {
     public void setTabIndicatorFullWidth(boolean tabIndicatorFullWidth) {
         this.mIndicatorFullWidth = tabIndicatorFullWidth;
         ViewCompat.postInvalidateOnAnimation(mTabStrip);
+    }
+
+    public void setHalfVisiabla(boolean isHalfVisible) {
+        setHalfVisiabla(isHalfVisible, 4);
+    }
+
+    public void setHalfVisiabla(boolean isHalfVisable, int visibleCount) {
+        if (mMode == MODE_SCROLLABLE && isHalfVisable && mTabStrip.getChildCount() > visibleCount) {
+            int widthPixels = getContext().getResources().getDisplayMetrics().widthPixels;
+            mTabItemWidth = (int) (widthPixels / (visibleCount + 0.5f));
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
     }
 
 }
