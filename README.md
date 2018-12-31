@@ -33,6 +33,8 @@ Browse the override TabLayout
 
 # Usage
 
+
+
 in layout's xml
 
 ```xml
@@ -63,8 +65,10 @@ If you have some problem or advice, please don't hesitate to raise an issue. Jus
 # License
 
 > Apache Version 2.0
-Copyright 2016 TellH
-Licensed under the Apache License, Version 2.0 (the "License");
+>
+> Copyright 2018 Knight
+>
+> Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
 >
