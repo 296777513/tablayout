@@ -1,6 +1,10 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'//添加
 apply plugin: 'maven'
+// JitPack Maven
+apply plugin: 'com.github.dcendents.android-maven'
+// Your Group
+group='com.knight.tablayout'
 
 android {
     compileSdkVersion 27
