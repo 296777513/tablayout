@@ -1,5 +1,6 @@
 # TabLayout
 [ ![Download](https://api.bintray.com/packages/knight/maven/tablayout/images/download.svg?version=1.0.5) ](https://bintray.com/knight/maven/tablayout/1.0.5/link)
+[![](https://jitpack.io/v/296777513/tablayout.svg)](https://jitpack.io/#296777513/tablayout)
 
 TabLayout is a library that bases on android.support.design.widget.TabLayout.The purpose of rewriting this class is to add some new function,just like animation and indictor's width and etc.
 
